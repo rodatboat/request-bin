@@ -2,7 +2,6 @@
 module.exports = {
   content: ["./renderer/**/*.{vue,js,ts,jsx,tsx}",
   "./pages/**/*.{vue,js,ts,jsx,tsx}",],
-  content: [],
   theme: {
     colors: {
       primary: {
