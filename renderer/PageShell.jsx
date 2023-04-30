@@ -20,6 +20,7 @@ function PageShell({ pageContext, children }) {
               About
             </Link>
           </Sidebar>
+          
           <Content>{children}</Content>
         </Layout>
       </PageContextProvider>

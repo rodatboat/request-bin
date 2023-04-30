@@ -6,7 +6,13 @@ import { PageShell } from './PageShell'
 
 // This render() hook only supports SSR, see https://vite-plugin-ssr.com/render-modes for how to modify render() to support SPA
 async function render(pageContext) {
-  const { Page, pageProps } = pageContext
+  const { Page, pageProps, redirectTo } = pageContext
+
+  if (redirectTo) {
+    window.location.href = redirectTo;
+    return
+  }
+  
   if (!Page) throw new Error('Client-side render() hook expects pageContext.Page to be defined')
   hydrateRoot(
     document.getElementById('page-view'),
