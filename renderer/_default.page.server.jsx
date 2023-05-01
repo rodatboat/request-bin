@@ -1,6 +1,6 @@
 export { render }
 // See https://vite-plugin-ssr.com/data-fetching
-export const passToClient = ['pageProps', 'urlPathname', "redirectTo"]
+export const passToClient = ['pageProps', 'urlPathname', "redirectTo", "errorInfo"]
 
 import ReactDOMServer from 'react-dom/server'
 import React from 'react'

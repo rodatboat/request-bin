@@ -3,20 +3,64 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'Larsseit-Regular';
+  src: url('/Larsseit-Regular.ttf') format('truetype');
+  /* font-display: swap; */
+}
+
+@font-face {
+  font-family: 'Larsseit-Medium';
+  src: url('/Larsseit-Medium.ttf') format('truetype');
+  /* font-display: swap; */
+}
+
+@font-face {
+  font-family: 'Larsseit-Bold';
+  src: url('/Larsseit-Bold.ttf') format('truetype');
+  /* font-display: swap; */
+}
+
+@layer base {
+  * {
+    font-family: 'Larsseit-Regular', sans-serif;
+  }
+
+  .font-medium {
+    font-family: 'Larsseit-Medium', sans-serif !important;
+  }
+
+  .font-bold {
+    font-family: 'Larsseit-Bold', sans-serif !important;
+  }
+}
+
+:root {
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+html {
+  @apply scroll-smooth;
+  @apply bg-black text-white;
+}
+
 body {
   margin: 0;
   font-family: sans-serif;
 }
 * {
   box-sizing: border-box;
+  @apply border-gray;
 }
 a {
   text-decoration: none;
 }
 
-.navitem {
-  padding: 3px 10px;
+#page-view {
+  height: 100vh;
 }
-.navitem.is-active {
-  background-color: #eee;
-}
+

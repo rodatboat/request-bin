@@ -1,5 +1,4 @@
-import React from 'react'
-import { Counter } from './Counter'
+import React from 'react';
 
 export { Page }
 
@@ -11,7 +10,7 @@ function Page() {
       <ul>
         <li>Rendered to HTML.</li>
         <li>
-          Interactive. <Counter />
+          Interactive.
         </li>
       </ul>
     </>
