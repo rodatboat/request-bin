@@ -4,13 +4,13 @@ export { onBeforeRender };
 import { RenderErrorPage } from 'vite-plugin-ssr/RenderErrorPage';
 
 async function onBeforeRender(pageContext) {
-  const { bid } = pageContext.routeParams;
+  const { bid, rid } = pageContext.routeParams;
 
-  if (bid === null) {
+  if (rid === null) {
     throw RenderErrorPage({
       pageContext: {
         pageProps:{
-          errorInfo: `Error loading bin. ID:'${bid}'.`,
+          errorInfo: `Error loading request. ID:'${rid}'.`,
         },
         // redirectTo: '/'
       }
@@ -18,7 +18,8 @@ async function onBeforeRender(pageContext) {
   }
   
   const pageProps = {
-    bid
+    bid,
+    rid
   };
   return {
     pageContext: {

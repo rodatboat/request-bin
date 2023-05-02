@@ -1,7 +1,7 @@
 import React from 'react';
-import BinHeader from '../components/BinHeader';
-import RequestBar from '../components/RequestBar';
-import BinLanding from '../components/BinLanding';
+import BinHeader from '../../components/BinHeader';
+import RequestBar from '../../components/RequestBar';
+import RequestDetails from '../../components/RequestDetails';
 
 export { Page }
 
@@ -12,7 +12,7 @@ export const documentProps = {
 }
 
 function Page(pageProps) {
-  const { bid } = pageProps;
+  const { rid } = pageProps;
 
   return (
     <>
@@ -20,7 +20,7 @@ function Page(pageProps) {
         <BinHeader {...pageProps} />
         <div className='flex flex-row w-full h-full'>
           <RequestBar {...pageProps} />
-          <BinLanding {...pageProps} />
+          <RequestDetails {...pageProps} />
         </div>
       </div>
     </>
