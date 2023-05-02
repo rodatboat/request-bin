@@ -1,7 +1,7 @@
 import React from 'react'
 
 export default function BinLanding(pageProps) {
-  const { bid = null } = pageProps;
+  const { bid = null, binData } = pageProps;
 
   return (
     <div className='flex-1 flex flex-col w-full p-2 bg-gray/25'>
@@ -31,7 +31,7 @@ export default function BinLanding(pageProps) {
               LAST REQUEST
             </h2>
             <h1 className='font-medium text-sm'>
-              1682983287
+              {binData.last_req}
             </h1>
           </div>
 
