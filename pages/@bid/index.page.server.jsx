@@ -2,6 +2,7 @@ export { onBeforeRender };
 
 
 import { RenderErrorPage } from 'vite-plugin-ssr/RenderErrorPage';
+import fetch from 'node-fetch';
 
 async function onBeforeRender(pageContext) {
   const { bid } = pageContext.routeParams;
@@ -16,6 +17,16 @@ async function onBeforeRender(pageContext) {
       }
     })
   }
+
+  const response = await fetch(import.meta.env.VITE_DB_URI+"/bins?" + new URLSearchParams({
+    bid: bid,
+}))
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data)
+    });
+
+  //   console.log(await response)
 
   const binData = {
     last_req: 1544827965,
