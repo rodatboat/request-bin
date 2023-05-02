@@ -1,6 +1,7 @@
 export { onBeforeRender };
 
 import { RenderErrorPage } from "vite-plugin-ssr/RenderErrorPage";
+import fetch from 'node-fetch'
 
 async function onBeforeRender(pageContext) {
   const { bid, rid } = pageContext.routeParams;
@@ -16,8 +17,16 @@ async function onBeforeRender(pageContext) {
     });
   }
 
+  // const response = await fetch("http://localhost:3000/hello")
+  //   // .then((res) => res.json())
+  //   .then((data) => {
+  //     console.log(data.body)
+  //   });
+
+  //   console.log(await response)
+
   const requestData = {
-    id:rid,
+    id: "2PDrUuiuxSOkTRIlIpARPoPKhph",
     bid: bid,
 
     headers: {
@@ -25,40 +34,40 @@ async function onBeforeRender(pageContext) {
       "x-amzn-trace-id": "Root=1-64509490-1af2343a2d6a95ed52ee7bfa",
       "accept": "application/json, text/plain, */*",
     },
-    query:{
-      "id":"ddc5f0ed-60ff-4435-abc5-590fafe4a771",
-      "timestamp":"1544827965",
-      "event":"delivered"
+    query: {
+      "id": "ddc5f0ed-60ff-4435-abc5-590fafe4a771",
+      "timestamp": "1544827965",
+      "event": "delivered"
     },
-    body:"sdASD5sdjjJuj45x==",
-    ip:"111.22.333.4",
-    method:"GET",
-    path:"/sample/fetch",
+    body: "sdASD5sdjjJuj45x==",
+    ip: "111.22.333.4",
+    method: "GET",
+    path: "/sample/fetch",
 
     createdAt: 1544827965
   };
 
   const binData = {
     last_req: 1544827965,
-    requests:[
+    requests: [
       {
-        id:"2PDrUuiuxSOkTRIlIpARPoPKhph",
+        id: "2PDrUuiuxSOkTRIlIpARPoPKhph",
         bid: bid,
-    
+
         headers: {
           "host": "ensqpz7mtbc9.x.pipedream.net",
           "x-amzn-trace-id": "Root=1-64509490-1af2343a2d6a95ed52ee7bfa",
           "accept": "application/json, text/plain, */*",
         },
-        query:{
-          "id":"ddc5f0ed-60ff-4435-abc5-590fafe4a771",
-          "timestamp":"1544827965",
-          "event":"delivered"
+        query: {
+          "id": "ddc5f0ed-60ff-4435-abc5-590fafe4a771",
+          "timestamp": "1544827965",
+          "event": "delivered"
         },
-        ip:"111.22.333.4",
-        method:"GET",
-        path:"/sample/fetch",
-    
+        ip: "111.22.333.4",
+        method: "GET",
+        path: "/sample/fetch",
+
         createdAt: 1544827965
       }
     ]

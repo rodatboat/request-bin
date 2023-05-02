@@ -25,7 +25,7 @@ const RequestNavItem = (req) => {
 export default function RequestBar(pageProps) {
   const {bid, binData=null} = pageProps;
   return (
-    <div className='flex-initial grow-0 flex flex-col w-80 border-r text-sm'>
+    <div className='hidden md:flex flex-col flex-initial grow-0 w-80 border-r text-sm'>
       <div className='border-b px-2 py-3'>
         <input
           className='rounded w-full bg-black border h-10 placeholder:text-gray px-3 font-medium'
@@ -45,7 +45,7 @@ export default function RequestBar(pageProps) {
       </div>
 
       <div className='flex flex-col'>
-        {binData.requests.map((b,i) => <RequestNavItem {...b} />)}
+        {binData.requests.map((b,i) => <RequestNavItem key={b.id} {...b} />)}
       </div>
     </div>
   )

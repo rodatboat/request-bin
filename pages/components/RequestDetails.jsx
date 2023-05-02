@@ -52,7 +52,7 @@ export default function RequestDetails(pageProps) {
                 {expandHeaders ? "COLLAPSE":"EXPAND"}
               </button>
               </h2>
-            <div className={`flex flex-col rounded ${expandHeaders ? "border" : ""} border-gray [&>.table-object]:${expandHeaders ? "" : "hidden"}`}>
+            <div className={`flex flex-col rounded ${expandHeaders ? "border" : ""} border-gray ${expandHeaders ? "" : "hidden"}`}>
               <div className="flex flex-row h-8 items-center text-sm table-object">
                 <p className="basis-1/3 px-2 h-full flex items-center text-secondary">
                   KEY
@@ -62,7 +62,7 @@ export default function RequestDetails(pageProps) {
                 </p>
               </div>
 
-              {Object.entries(requestData.headers).map((q, i)=><TableObject k={q[0]} val={q[1]} />)}
+              {Object.entries(requestData.headers).map((q, i)=><TableObject key={q[1]} k={q[0]} val={q[1]} />)}
 
             </div>
           </div>
@@ -74,7 +74,7 @@ export default function RequestDetails(pageProps) {
                 {expandQuery ? "COLLAPSE":"EXPAND"}
               </button>
               </h2>
-            <div className={`flex flex-col rounded ${expandQuery ? "border" : ""} border-gray [&>.table-object]:${expandQuery ? "" : "hidden"}`}>
+            <div className={`flex flex-col rounded ${expandQuery ? "border" : ""} border-gray ${expandQuery ? "" : "hidden"}`}>
               <div className="flex flex-row h-8 items-center text-sm table-object">
                 <p className="basis-1/3 px-2 h-full flex items-center text-secondary">
                   KEY
@@ -84,7 +84,7 @@ export default function RequestDetails(pageProps) {
                 </p>
               </div>
 
-              {Object.entries(requestData.query).map((q, i)=><TableObject k={q[0]} val={q[1]} />)}
+              {Object.entries(requestData.query).map((q, i)=><TableObject key={q[1]} k={q[0]} val={q[1]} />)}
 
             </div>
           </div>
