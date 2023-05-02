@@ -14,16 +14,28 @@ export default function RequestDetails(pageProps) {
         </div>
 
         <div className='px-4 py-4 overflow-hidden'>
-          <div>
-            <h2 className='text-secondary uppercase text-xs mb-1'>
-              DETAILS
-            </h2>
+
+          <div className='flex flex-row gap-8'>
             <div>
+            <h2 className='text-secondary uppercase text-xs'>
+              METHOD
+            </h2>
+            <div className='font-medium text-md'>
               POST
+            </div>
+            </div>
+
+            <div>
+            <h2 className='text-secondary uppercase text-xs'>
+              PATH
+            </h2>
+            <div className='font-medium text-md'>
+              /sample/post/request/
+            </div>
             </div>
           </div>
 
-          <div>
+          <div className='mt-4'>
             <h2 className='text-secondary uppercase text-xs mb-1'>
               HEADERS
             </h2>
