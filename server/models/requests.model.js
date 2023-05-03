@@ -3,8 +3,7 @@ const Schema = mongoose.Schema;
 
 const requestsSchema = new Schema({
     bid: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Bins",
+        type: String,
         required: true,
     },
     ip:{

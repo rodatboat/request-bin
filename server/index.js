@@ -12,7 +12,10 @@ mongoose.connect(mongoUrl)
     .catch((e) => console.log(e));
 // mongoose.set('strictQuery', true);
 
+app.use(cors());
+
 app.use(express.json());
+// app.use(express.urlencoded({extended:false}));
 
 const binRouter = require('./routes/bins');
 app.use('/bins', binRouter);

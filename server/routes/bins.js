@@ -10,22 +10,26 @@ router.route("/").get(async (req, res) => {
 
         let existingBin = await Bins.findOne({ bid: bid });
 
-        let newBin = false;
         if (!existingBin) {
-            newBin = true;
+            // newBin = true;
             // existingBin = await Bins.create({
             //     bid: uuidv4()
             // });
         }
 
         const binRequests = await Requests.find({
-            bid: existingBin._id
-        })
+            bid: existingBin.bid
+        }, {
+            createdAt: -1,
+            updatedAt: -1,
+            __v: -1
+        });
+
+        const {createdAt, updatedAt, __v, ...binData} = existingBin._doc
 
         return res.json({
             data: {
-                new: newBin,
-                bin: existingBin,
+                bin: binData,
                 requests: binRequests,
             },
             success: true
@@ -34,6 +38,32 @@ router.route("/").get(async (req, res) => {
     } catch (error) {
         console.log(error.message)
         return res.send({ success: false, message: "Error fetching bin." });
+    }
+});
+
+router.route("/new").get(async (req, res) => {
+    try {
+
+        let newBin = await Bins.create({
+            bid: uuidv4()
+        });
+
+        const binRequests = await Requests.find({
+            bid: newBin._id
+        });
+
+        return res.json({
+            data: {
+                new: true,
+                bin: newBin,
+                requests: binRequests,
+            },
+            success: true
+        });
+
+    } catch (error) {
+        console.log(error.message)
+        return res.send({ success: false, message: "Error creating bin." });
     }
 });
 

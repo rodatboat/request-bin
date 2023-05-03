@@ -13,6 +13,8 @@ async function startServer() {
   const app = express()
 
   app.use(compression())
+  app.use(express.json());
+  // app.use(express.urlencoded({extended:false}));
 
   if (isProduction) {
     const sirv = require('sirv')
@@ -28,10 +30,12 @@ async function startServer() {
     app.use(viteDevMiddleware)
   }
 
-  app.get('*', async (req, res, next) => {
+  app.all('*', async (req, res, next) => {
     const pageContextInit = {
-      urlOriginal: req.originalUrl
+      urlOriginal: req.originalUrl,
+      reqData: req
     }
+
     const pageContext = await renderPage(pageContextInit)
     const { httpResponse } = pageContext
     if (!httpResponse) return next()

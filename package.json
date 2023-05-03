@@ -1,7 +1,7 @@
 {
   "scripts": {
     "vercel-build": "vite build & vite build --ssr",
-    "dev": "vite",
+    "dev": "node ./api/index.js",
     "preview": "vite preview"
   },
   "dependencies": {
