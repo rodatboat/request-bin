@@ -3,7 +3,7 @@ import React from 'react';
 const RequestNavItem = (req) => {
   return (
     <>
-    <a href={`/${req.bid}/${req.id}`}>
+    <a href={`/${req.bid}/${req.rid}`}>
         <div className='flex flex-row mx-2 gap-1 border rounded text-xs items-center h-8 overflow-hidden cursor-pointer'>
           <div className='self-start inline-flex h-full items-center pl-1'>
             <p className='w-min min-w-max pr-1'>
@@ -45,7 +45,7 @@ export default function RequestBar(pageProps) {
       </div>
 
       <div className='flex flex-col'>
-        {binData.requests.map((b,i) => <RequestNavItem key={b.id} {...b} />)}
+        {binData.requests.map((b,i) => <RequestNavItem key={b.rid} {...b} />)}
       </div>
     </div>
   )

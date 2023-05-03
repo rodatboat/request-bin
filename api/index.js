@@ -14,7 +14,7 @@ async function startServer() {
 
   app.use(compression())
   app.use(express.json());
-  // app.use(express.urlencoded({extended:false}));
+  app.use(express.urlencoded({extended:false}));
 
   if (isProduction) {
     const sirv = require('sirv')
@@ -31,9 +31,11 @@ async function startServer() {
   }
 
   app.all('*', async (req, res, next) => {
+    const reqIp = (req.headers['x-forwarded-for'] || req.socket.remoteAddress || '').split(',')[0].trim();
     const pageContextInit = {
       urlOriginal: req.originalUrl,
-      reqData: req
+      reqData: req,
+      reqIp
     }
 
     const pageContext = await renderPage(pageContextInit)

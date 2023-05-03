@@ -2,6 +2,10 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const requestsSchema = new Schema({
+    rid: {
+        type: String,
+        required: true,
+    },
     bid: {
         type: String,
         required: true,

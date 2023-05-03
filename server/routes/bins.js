@@ -19,10 +19,6 @@ router.route("/").get(async (req, res) => {
 
         const binRequests = await Requests.find({
             bid: existingBin.bid
-        }, {
-            createdAt: -1,
-            updatedAt: -1,
-            __v: -1
         });
 
         const {createdAt, updatedAt, __v, ...binData} = existingBin._doc
@@ -49,7 +45,7 @@ router.route("/new").get(async (req, res) => {
         });
 
         const binRequests = await Requests.find({
-            bid: newBin._id
+            bid: newBin.bid
         });
 
         return res.json({

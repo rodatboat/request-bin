@@ -3,11 +3,9 @@ export { onBeforeRender };
 import { RenderErrorPage } from "vite-plugin-ssr/RenderErrorPage";
 import fetch from "node-fetch";
 
-import express from "express";
-
 async function onBeforeRender(pageContext) {
   const { bid, rid } = pageContext.routeParams;
-  const { reqData } = pageContext;
+  const { reqData, reqIp } = pageContext;
 
   if (rid === null) {
     throw RenderErrorPage({
@@ -20,30 +18,11 @@ async function onBeforeRender(pageContext) {
     });
   }
 
-  let requestData = {
-    id: "2PDrUuiuxSOkTRIlIpARPoPKhph",
-    bid: bid,
-
-    headers: {
-      host: "ensqpz7mtbc9.x.pipedream.net",
-      "x-amzn-trace-id": "Root=1-64509490-1af2343a2d6a95ed52ee7bfa",
-      accept: "application/json, text/plain, */*",
-    },
-    query: {
-      id: "ddc5f0ed-60ff-4435-abc5-590fafe4a771",
-      timestamp: "1544827965",
-      event: "delivered",
-    },
-    body: "sdASD5sdjjJuj45x==",
-    ip: "111.22.333.4",
-    method: "GET",
-    path: "/sample/fetch",
-
-    createdAt: 1544827965,
-  };
+  let binData = null;
+  let requestData = null;
 
   let requestExists = false;
-  const response = await fetch(
+  await fetch(
     import.meta.env.VITE_DB_URI +
       "/bins?" +
       new URLSearchParams({
@@ -52,15 +31,29 @@ async function onBeforeRender(pageContext) {
   )
     .then((res) => res.json())
     .then((data) => {
-      if (data.data.success) {
+      if (data.success) {
+        binData = {
+          bin:data.data.bin,
+          requests:data.data.requests
+        }
         data.data.requests.map((r, i) => {
-          if (r === rid) {
+          if (r.rid === rid) {
             requestExists = true;
             requestData = r;
           }
         });
       }
     });
+
+    const body = reqData.method === "GET" ? null : JSON.stringify({
+      ip:reqIp,
+      path: reqData.path,
+      method: reqData.method,
+      headers: reqData.headers,
+      query: reqData.query,
+      params: reqData.params,
+      body: JSON.stringify(reqData.body),
+    })
 
   if (!requestExists) {
     await fetch(
@@ -73,13 +66,8 @@ async function onBeforeRender(pageContext) {
         ),
         {
           method: "POST",
-          // crossDomain: true,
           headers: reqData.headers,
-          body: JSON.stringify({
-            method: reqData.method,
-            headers: reqData.headers,
-            body: reqData.body,
-          }),
+          body: body,
         }
     )
       .then((res) => res.json())
@@ -87,33 +75,8 @@ async function onBeforeRender(pageContext) {
         // console.log(data)
       });
   }
-  //   console.log(await response)
 
-  const binData = {
-    last_req: 1544827965,
-    requests: [
-      {
-        id: "2PDrUuiuxSOkTRIlIpARPoPKhph",
-        bid: bid,
-
-        headers: {
-          host: "ensqpz7mtbc9.x.pipedream.net",
-          "x-amzn-trace-id": "Root=1-64509490-1af2343a2d6a95ed52ee7bfa",
-          accept: "application/json, text/plain, */*",
-        },
-        query: {
-          id: "ddc5f0ed-60ff-4435-abc5-590fafe4a771",
-          timestamp: "1544827965",
-          event: "delivered",
-        },
-        ip: "111.22.333.4",
-        method: "GET",
-        path: "/sample/fetch",
-
-        createdAt: 1544827965,
-      },
-    ],
-  };
+  // need to fix error when fetch from browser, it doesnt store headers etc.
 
   const pageProps = {
     bid,

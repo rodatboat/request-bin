@@ -10,7 +10,7 @@ const mongoUrl = process.env.MONGO_URL;
 mongoose.connect(mongoUrl)
     .then(() => console.log("Connected to database"))
     .catch((e) => console.log(e));
-// mongoose.set('strictQuery', true);
+mongoose.set('strictQuery', true);
 
 app.use(cors());
 
