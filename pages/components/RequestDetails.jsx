@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import copy from 'copy-to-clipboard';
 import dayjs from "dayjs";
+import linkSvg from "/link.svg";
 
 const TableObject = ({ k = null, val = null }) => {
   const copyToClipboard = () => {
@@ -10,8 +11,9 @@ const TableObject = ({ k = null, val = null }) => {
     <>
       <div className="flex flex-row h-8 items-center text-sm border-t table-object">
         <p className="basis-1/3 px-2 h-full flex items-center">{k}</p>
-        <p onClick={copyToClipboard} className="basis-full px-2 border-l h-full flex items-center text-secondary overflow-hidden whitespace-nowrap text-ellipsis cursor-pointer">
+        <p onClick={copyToClipboard} className="basis-full px-2 border-l h-full inline-flex items-center text-secondary overflow-hidden whitespace-nowrap text-ellipsis cursor-pointer">
           {val}
+          <img className="ml-1 w-3 hover:stroke-white" src={linkSvg} />
         </p>
       </div>
     </>
@@ -29,6 +31,10 @@ export default function RequestDetails(pageProps) {
   const toggleBody = () => setExpandBody(!expandBody);
   const toggleParams = () => setExpandParams(!expandParams);
 
+  const copyToClipboard = (v) => {
+    let isCopy = copy(v)
+  }
+
   const { bid = null, requestData } = pageProps;
   return (
     <div className="flex-1 flex flex-col w-full p-2 bg-gray/25">
@@ -38,8 +44,8 @@ export default function RequestDetails(pageProps) {
           <div className="inline-flex gap-2">
             <p>{requestData.rid}</p>
             <p>{dayjs(requestData.createdAt).format(
-                "MM/DD/YYYY hh:mm:ss"
-              )}</p>
+              "MM/DD/YYYY HH:mm:ss"
+            )}</p>
           </div>
         </div>
 
@@ -52,7 +58,9 @@ export default function RequestDetails(pageProps) {
 
             <div>
               <h2 className="text-secondary uppercase text-xs">PATH</h2>
-              <div className="font-medium text-md">{requestData.path.replace(`/${bid}`, "").replace(`/${requestData.rid}`, "")}</div>
+              <div className="font-medium text-md">{requestData.path.replace(`/${bid}`, "") + "?" + new URLSearchParams(
+                JSON.parse(requestData.query)
+              ).toString()}</div>
             </div>
           </div>
 
@@ -63,6 +71,9 @@ export default function RequestDetails(pageProps) {
                 <button onClick={toggleHeaders} className="text-xs self-center bg-gray text-secondary font-medium px-2 rounded-xl">
                   {expandHeaders ? "COLLAPSE" : "EXPAND"}
                 </button>
+                <p onClick={()=>copyToClipboard(requestData.headers)} className="text-[10px] font-bold inline-flex items-center text-gray hover:text-secondary transition-all duration-300 ease-in-out cursor-pointer">
+                  COPY
+                  </p>
               </h2>
               <div className={`flex flex-col rounded ${expandHeaders ? "border" : ""} border-gray ${expandHeaders ? "" : "hidden"}`}>
                 <div className="flex flex-row h-8 items-center text-sm table-object">
@@ -78,13 +89,16 @@ export default function RequestDetails(pageProps) {
               </div>
             </div> : null}
 
-          {requestData.query ?
+          {requestData.query !== "{}" ?
             <div className="mt-4">
               <h2 className="inline-flex gap-2 text-secondary uppercase text-xs mb-2">
                 QUERY
                 <button onClick={toggleQuery} className="text-xs self-center bg-gray text-secondary font-medium px-2 rounded-xl">
                   {expandQuery ? "COLLAPSE" : "EXPAND"}
                 </button>
+                <p onClick={()=>copyToClipboard(requestData.query)} className="text-[10px] font-bold inline-flex items-center text-gray hover:text-secondary transition-all duration-300 ease-in-out cursor-pointer">
+                  COPY
+                  </p>
               </h2>
               <div className={`flex flex-col rounded ${expandQuery ? "border" : ""} border-gray ${expandQuery ? "" : "hidden"}`}>
                 <div className="flex flex-row h-8 items-center text-sm table-object">
@@ -108,6 +122,9 @@ export default function RequestDetails(pageProps) {
                 <button onClick={toggleBody} className="text-xs self-center bg-gray text-secondary font-medium px-2 rounded-xl">
                   {expandBody ? "COLLAPSE" : "EXPAND"}
                 </button>
+                <p onClick={()=>copyToClipboard(requestData.body)} className="text-[10px] font-bold inline-flex items-center text-gray hover:text-secondary transition-all duration-300 ease-in-out cursor-pointer">
+                  COPY
+                  </p>
               </h2>
               <div className={`flex flex-col rounded ${expandBody ? "border" : ""} border-gray ${expandBody ? "" : "hidden"}`}>
                 <div className="flex flex-row h-8 items-center text-sm table-object">

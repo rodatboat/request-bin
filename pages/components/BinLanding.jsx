@@ -1,4 +1,5 @@
 import React from 'react'
+import dayjs from "dayjs";
 
 export default function BinLanding(pageProps) {
   const { bid = null, binData } = pageProps;
@@ -19,10 +20,7 @@ export default function BinLanding(pageProps) {
               Your endpoint is
             </h2>
             <h1 className='flex flex-row font-medium text-lg gap-2 items-center'>
-              https://localhost:3000/{bid}
-              <span className='inline text-xs self-center bg-gray text-secondary font-medium px-2 rounded-xl'>
-                Copy
-              </span>
+              {`${import.meta.env.VITE_APP_URI}/${bid}`}
             </h1>
           </div>
 
@@ -31,7 +29,9 @@ export default function BinLanding(pageProps) {
               LAST REQUEST
             </h2>
             <h1 className='font-medium text-sm'>
-              {binData.last_req}
+              {dayjs(binData.bin.last_req).format(
+              "MM/DD/YYYY HH:mm:ss"
+            )}
             </h1>
           </div>
 

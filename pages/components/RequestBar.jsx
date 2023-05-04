@@ -7,12 +7,12 @@ const RequestNavItem = (req) => {
     <a href={`/${req.bid}/${req.rid}`}>
         <div className='flex flex-row mx-2 gap-1 border rounded text-xs items-center h-8 overflow-hidden cursor-pointer'>
           <div className='self-start inline-flex h-full items-center pl-1'>
-            <p className='w-min min-w-max pr-1'>
+            <p className='flex min-w-max pr-1 w-24'>
               {dayjs(req.createdAt).format(
-                "MM/DD/YYYY hh:mm:ss"
+                "MM/DD/YY HH:mm:ss"
               )}
             </p>
-            <p className='flex items-center justify-center border-x px-1 h-full'>
+            <p className='flex items-center justify-center border-x px-1 h-full w-14'>
               [{req.method}]
             </p>
           </div>
@@ -48,7 +48,7 @@ export default function RequestBar(pageProps) {
       </div>
 
       <div className='flex flex-col'>
-        {binData.requests.map((b,i) => <RequestNavItem key={b.rid} {...b} />)}
+        {binData.requests.reverse().map((b,i) => <RequestNavItem key={b.rid} {...b} />)}
       </div>
     </div>
   )
