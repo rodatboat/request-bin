@@ -6,6 +6,11 @@ const binsSchema = new Schema({
         type: String,
         required: true
     },
+    private:{
+        type:Boolean,
+        required: true,
+        default: false
+    },
     last_req: {
         type: Date,
         required: true,

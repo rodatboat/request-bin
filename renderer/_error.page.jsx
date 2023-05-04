@@ -6,7 +6,6 @@ function Page(pageContext) {
   const { is404, errorInfo } = pageContext;
 
   useEffect(() => {
-    console.log(pageContext);
   }, []);
   if (is404) {
     return (

@@ -11,7 +11,7 @@ async function onBeforeRender(pageContext) {
     throw RenderErrorPage({
       pageContext: {
         pageProps:{
-          errorInfo: `Error loading bin. ID:'${bid}'.`,
+          errorInfo: `Error loading bin. ID:  ${bid}`,
         },
         // redirectTo: '/'
       }
@@ -34,6 +34,15 @@ async function onBeforeRender(pageContext) {
           bin:data.data.bin,
           requests:data.data.requests
         }
+      } else {
+        throw RenderErrorPage({
+          pageContext: {
+            pageProps:{
+              errorInfo: `Error loading bin. ID:  ${bid}`,
+            },
+            redirectTo: '/'
+          }
+        })
       }
     });
 

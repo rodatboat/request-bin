@@ -29,8 +29,35 @@ router.route("/").get(async (req, res) => {
         });
 
     } catch (error) {
-        console.log(error.message)
+        // console.log(error.message)
         return res.send({ success: false, message: "Error fetching bin." });
+    }
+});
+
+router.route("/recent").get(async (req, res) => {
+    try {
+
+        let recentBins = await Bins.find({ private: false }, {
+            createdAt: 0,
+            updatedAt: 0,
+            __v: 0,
+            _id: 0,
+        }).limit(20);
+
+        if (!recentBins) {
+            return res.send({ success: false, message: "No recent bins." });
+        }
+
+        return res.json({
+            data: {
+                recent: recentBins
+            },
+            success: true
+        });
+
+    } catch (error) {
+        // console.log(error.message)
+        return res.send({ success: false, message: "Error fetching recent bins." });
     }
 });
 
@@ -55,7 +82,7 @@ router.route("/new").get(async (req, res) => {
         });
 
     } catch (error) {
-        console.log(error.message)
+        // console.log(error.message)
         return res.send({ success: false, message: "Error creating bin." });
     }
 });

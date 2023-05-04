@@ -64,4 +64,32 @@ router.route("/new").post(async (req, res) => {
   }
 });
 
+router.route("/").delete(async (req, res) => {
+  try {
+    const { bid, rid } = req.query;
+
+    const binRequests = await Requests.findOneAndDelete({
+      bid:bid,
+      rid: rid
+  });
+
+    const { createdAt, updatedAt, __v, _id, ...reqData } = binRequests;
+
+    if(binRequests){
+    return res.json({
+      data: {
+        request: reqData,
+      },
+      success: true,
+    });
+  } else {
+    return res.json({
+      success: false,
+    });
+    }
+  } catch (error) {
+    return res.send({ success: false, message: "Error deleting request." });
+  }
+});
+
 module.exports = router;

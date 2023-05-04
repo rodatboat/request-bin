@@ -33,6 +33,10 @@ async function render(pageContext) {
       <meta property="og:title" content="${title}" />
       <meta property="og:url" content="${import.meta.env.VITE_APP_URI}" />
       <meta property="og:site_name" content="${title}" />
+
+      <meta property="og:image" content="${import.meta.env.VITE_APP_URI}/rez_logo.png" />
+      <meta property="og:image:width" content="512" />
+      <meta property="og:image:height" content="512" />
       
       <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
       <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">

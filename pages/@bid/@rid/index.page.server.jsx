@@ -35,7 +35,7 @@ async function onBeforeRender(pageContext) {
         throw RenderErrorPage({
           pageContext: {
             pageProps: {
-              errorInfo: `Error fetching bin. ID:'${bid}'.`,
+              errorInfo: `Error fetching bin. ID:  ${bid}`,
               requestData: [],
               binData,
             },
