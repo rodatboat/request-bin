@@ -37,7 +37,7 @@ export default function RequestDetails(pageProps) {
 
   const { bid = null, requestData } = pageProps;
   return (
-    <div className="flex-1 flex flex-col w-full p-2 bg-gray/25  overflow-auto">
+    <div className="flex-1 flex flex-col w-full p-2 bg-gray/25 overflow-auto">
       <div className="border rounded flex-initial border-gray bg-black">
         <div className=" flex flex-row justify-between py-1 px-2 border-b border-gray text-secondary text-xs">
           <p className="">HTTP REQUEST</p>
@@ -84,7 +84,7 @@ export default function RequestDetails(pageProps) {
                     VALUE
                   </p>
                 </div>
-                {Object.entries(JSON.parse(requestData.headers)).map((q, i) => <TableObject key={q[1]} k={q[0]} val={q[1]} />)}
+                {Object.entries(JSON.parse(requestData.headers)).map((q, i) => <TableObject key={i +q[1]} k={q[0]} val={q[1]} />)}
 
               </div>
             </div> : null}
@@ -110,7 +110,7 @@ export default function RequestDetails(pageProps) {
                   </p>
                 </div>
 
-                {Object.entries(JSON.parse(requestData.query)).map((q, i) => <TableObject key={q[1]} k={q[0]} val={q[1]} />)}
+                {Object.entries(JSON.parse(requestData.query)).map((q, i) => <TableObject key={i +q[1]} k={q[0]} val={q[1]} />)}
 
               </div>
             </div> : null}
@@ -136,7 +136,7 @@ export default function RequestDetails(pageProps) {
                   </p>
                 </div>
 
-                {Object.entries(JSON.parse(requestData.body)).map((q, i) => <TableObject key={q[1]} k={q[0]} val={q[1]} />)}
+                {Object.entries(JSON.parse(requestData.body)).map((q, i) => <TableObject key={i +q[1]} k={q[0]} val={q[1]} />)}
 
               </div>
             </div> : null}

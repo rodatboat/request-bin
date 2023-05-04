@@ -5,7 +5,7 @@ export default function BinLanding(pageProps) {
   const { bid = null, binData } = pageProps;
 
   return (
-    <div className='flex-1 flex flex-col w-full p-2 bg-gray/25'>
+    <div className='flex-1 flex flex-col w-full p-2 bg-gray/25 overflow-auto'>
       <div className='border rounded flex-initial border-gray bg-black'>
         <div className=' flex flex-row justify-between py-1 px-2 border-b border-gray text-secondary text-xs'>
           <p className=''>ENDPOINT</p>

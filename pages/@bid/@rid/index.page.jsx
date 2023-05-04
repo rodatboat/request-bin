@@ -15,7 +15,7 @@ export const documentProps = {
 function Page(pageProps) {
   const { rid, binData } = pageProps;
 
-  useEffect(()=>{
+  useEffect(() => {
     // window.localStorage.setItem("reqs", JSON.stringify(binData.requests.reverse()))
   })
 
@@ -23,9 +23,9 @@ function Page(pageProps) {
     <>
       <div className='flex flex-col h-full w-full overflow-hidden'>
         <NavBar {...pageProps} >
-          </NavBar>
+        </NavBar>
         <BinHeader {...pageProps} />
-        <div className='flex flex-row w-full h-full'>
+        <div className='flex flex-row w-full h-full overflow-hidden'>
           <RequestBar {...pageProps} />
           <RequestDetails {...pageProps} />
         </div>
