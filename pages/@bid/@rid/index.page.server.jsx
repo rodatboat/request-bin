@@ -7,34 +7,23 @@ async function onBeforeRender(pageContext) {
   const { bid, rid } = pageContext.routeParams;
   const { reqData, reqIp } = pageContext;
 
-  if (rid === null) {
-    throw RenderErrorPage({
-      pageContext: {
-        pageProps: {
-          errorInfo: `Error loading request. ID:'${rid}'.`,
-        },
-        // redirectTo: '/'
-      },
-    });
-  }
-
   let binData = null;
   let requestData = null;
 
   let requestExists = false;
   await fetch(
     import.meta.env.VITE_DB_URI +
-      "/bins?" +
-      new URLSearchParams({
-        bid: bid,
-      })
+    "/bins?" +
+    new URLSearchParams({
+      bid: bid,
+    })
   )
     .then((res) => res.json())
     .then((data) => {
       if (data.success) {
         binData = {
-          bin:data.data.bin,
-          requests:data.data.requests
+          bin: data.data.bin,
+          requests: data.data.requests
         }
         data.data.requests.map((r, i) => {
           if (r.rid === rid) {
@@ -45,34 +34,48 @@ async function onBeforeRender(pageContext) {
       }
     });
 
-    const body = reqData.method === "GET" ? null : JSON.stringify({
-      ip:reqIp,
-      path: reqData.path,
-      method: reqData.method,
-      headers: reqData.headers,
-      query: reqData.query,
-      params: reqData.params,
-      body: JSON.stringify(reqData.body),
-    })
+  const body = JSON.stringify({
+    ip: reqIp,
+    path: reqData.path,
+    method: reqData.method,
+    headers: reqData.headers,
+    query: reqData.query,
+    params: reqData.params,
+    raw_body: reqData.body,
+  })
 
   if (!requestExists) {
     await fetch(
       import.meta.env.VITE_DB_URI +
-        "/reqs/new?" +
-        new URLSearchParams(
-          {
-            bid: bid,
-          }
-        ),
+      "/reqs/new?" +
+      new URLSearchParams(
         {
-          method: "POST",
-          headers: reqData.headers,
-          body: body,
+          bid: bid,
         }
+      ),
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept":"*/*",
+          "Accept-Encoding":"gzip, deflate, br",
+          "Connection":"keep-alive"
+        },
+        body: body,
+      }
     )
       .then((res) => res.json())
       .then((data) => {
-        // console.log(data)
+        throw RenderErrorPage({
+          pageContext: {
+            pageProps: {
+              errorInfo: `Thanks for your request to ${data.data.request.bid}. ID:'${data.data.request.rid}'.`,
+              requestData,
+              binData,
+            },
+            redirectTo: `/${bid}`,
+          },
+        });
       });
   }
 

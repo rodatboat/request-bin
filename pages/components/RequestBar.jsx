@@ -1,4 +1,5 @@
 import React from 'react';
+import dayjs from "dayjs";
 
 const RequestNavItem = (req) => {
   return (
@@ -7,7 +8,9 @@ const RequestNavItem = (req) => {
         <div className='flex flex-row mx-2 gap-1 border rounded text-xs items-center h-8 overflow-hidden cursor-pointer'>
           <div className='self-start inline-flex h-full items-center pl-1'>
             <p className='w-min min-w-max pr-1'>
-              {req.createdAt}
+              {dayjs(req.createdAt).format(
+                "MM/DD/YYYY hh:mm:ss"
+              )}
             </p>
             <p className='flex items-center justify-center border-x px-1 h-full'>
               [{req.method}]

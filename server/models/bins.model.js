@@ -7,9 +7,9 @@ const binsSchema = new Schema({
         required: true
     },
     last_req: {
-        type: Number,
+        type: Date,
         required: true,
-        default: (Math.floor(Date.now() / 1000))
+        default: Date.now()
     }
 }, {
     collection: "Bins",

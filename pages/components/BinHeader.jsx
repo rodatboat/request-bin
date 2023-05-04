@@ -1,6 +1,11 @@
 import React from 'react';
+import copy from 'copy-to-clipboard';
 
 export default function BinHeader({ bid = null }) {
+    const copyToClipboard = () => {
+        let isCopy = copy(`${import.meta.env.VITE_APP_URI}/${bid}`)
+      }
+
     const createBin = async () => {
         return fetch(import.meta.env.VITE_DB_URI + "/bins/new").then((res) => res.json())
         .then((data) => {
@@ -21,7 +26,7 @@ export default function BinHeader({ bid = null }) {
                     </span>
                 </h1>
                 <div className='flex flex-row gap-2 text-sm'>
-                    <button className='font-medium border rounded px-4 text-secondary hover:text-white hover:border-white transition-all duration-150 ease-in-out'>
+                    <button onClick={copyToClipboard} className='font-medium border rounded px-4 text-secondary hover:text-white hover:border-white transition-all duration-150 ease-in-out'>
                         Copy
                     </button>
                     <button onClick={createBin} className='font-medium border rounded px-2 border-white bg-white text-black hover:text-white hover:bg-black hover:border-white transition-all duration-150 ease-in-out'>

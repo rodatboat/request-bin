@@ -1,11 +1,16 @@
 import React, { useState } from "react";
+import copy from 'copy-to-clipboard';
+import dayjs from "dayjs";
 
 const TableObject = ({ k = null, val = null }) => {
+  const copyToClipboard = () => {
+    let isCopy = copy(val)
+  }
   return (
     <>
       <div className="flex flex-row h-8 items-center text-sm border-t table-object">
         <p className="basis-1/3 px-2 h-full flex items-center">{k}</p>
-        <p className="basis-full px-2 border-l h-full flex items-center text-secondary">
+        <p onClick={copyToClipboard} className="basis-full px-2 border-l h-full flex items-center text-secondary overflow-hidden whitespace-nowrap text-ellipsis cursor-pointer">
           {val}
         </p>
       </div>
@@ -15,9 +20,9 @@ const TableObject = ({ k = null, val = null }) => {
 
 export default function RequestDetails(pageProps) {
   const [expandHeaders, setExpandHeaders] = useState(false);
-  const [expandQuery, setExpandQuery] = useState(true);
-  const [expandBody, setExpandBody] = useState(false);
   const [expandParams, setExpandParams] = useState(true);
+  const [expandQuery, setExpandQuery] = useState(true);
+  const [expandBody, setExpandBody] = useState(true);
 
   const toggleHeaders = () => setExpandHeaders(!expandHeaders);
   const toggleQuery = () => setExpandQuery(!expandQuery);
@@ -32,7 +37,9 @@ export default function RequestDetails(pageProps) {
           <p className="">HTTP REQUEST</p>
           <div className="inline-flex gap-2">
             <p>{requestData.rid}</p>
-            <p>{requestData.createdAt}</p>
+            <p>{dayjs(requestData.createdAt).format(
+                "MM/DD/YYYY hh:mm:ss"
+              )}</p>
           </div>
         </div>
 
@@ -94,7 +101,7 @@ export default function RequestDetails(pageProps) {
               </div>
             </div> : null}
 
-          {requestData.body ?
+          {requestData.body !== "{}" ?
             <div className="mt-4">
               <h2 className="inline-flex gap-2 text-secondary uppercase text-xs mb-2">
                 BODY
