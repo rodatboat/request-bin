@@ -24,7 +24,9 @@ function Page(pageProps) {
       <div className='flex flex-col h-full w-full overflow-hidden'>
         <NavBar {...pageProps} >
         </NavBar>
-        <BinHeader {...pageProps} />
+        <div className="mt-16">
+          <BinHeader {...pageProps} />
+        </div>
         <div className='flex flex-row w-full h-full overflow-hidden'>
           <RequestBar {...pageProps} />
           <RequestDetails {...pageProps} />

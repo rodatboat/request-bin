@@ -1,6 +1,8 @@
 import React from 'react'
 import dayjs from "dayjs";
 
+import sampleSvg from '/sample.svg'
+
 export default function BinLanding(pageProps) {
   const { bid = null, binData } = pageProps;
 
@@ -53,18 +55,18 @@ export default function BinLanding(pageProps) {
         </div>
 
         <div className='px-4 py-4 overflow-hidden'>
-          <div className="flex flex-row justify-between">
+          <div className="flex flex-col md:flex-row justify-between">
             <div className="">
               <h2 className='text-secondary uppercase text-xs'>
                 Your endpoint is
               </h2>
-              <h1 className='flex flex-row font-medium text-lg gap-2 items-center'>
+              <h1 className='flex md:flex-row font-medium text-lg gap-2 items-center'>
                 {`${import.meta.env.VITE_APP_URI}/${bid}`}
               </h1>
             </div>
-            <div className="">
+            <div className="self-start md:self-center mt-2 md:my-0">
               <button onClick={sendExampleRequests} className='inline-flex items-center gap-1 font-medium text-sm border rounded px-3 py-1 text-secondary hover:text-white hover:border-white transition-all duration-150 ease-in-out'>
-                {/* <img className="w-[14px]" src={deleteSvg} /> */}
+                <img className="w-[12px]" src={sampleSvg} />
                 Send Example Request
               </button>
             </div>

@@ -15,7 +15,7 @@ export const documentProps = {
 function Page(pageProps) {
   const { bid, binData } = pageProps;
 
-  useEffect(()=>{
+  useEffect(() => {
     // window.localStorage.setItem("bins", JSON.stringify(binData.bid))
   })
 
@@ -23,9 +23,11 @@ function Page(pageProps) {
     <>
       <div className='flex flex-col h-full w-full overflow-hidden'>
         <NavBar {...pageProps}>
-          
+
         </NavBar>
-        <BinHeader {...pageProps} />
+        <div className="mt-16">
+          <BinHeader {...pageProps} />
+        </div>
         <div className='flex flex-row w-full h-full overflow-hidden'>
           <RequestBar {...pageProps} />
           <BinLanding {...pageProps} />
