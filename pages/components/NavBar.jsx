@@ -41,7 +41,7 @@ export default function NavBar(pageProps) {
     }, [])
 
     return (
-        <div className='flex-initial h-16 flex items-center border-b'>
+        <div className='flex-initial shrink-0 h-16 flex items-center border-b'>
             <div className='flex-1 flex flex-row justify-between max-w-screen px-8 mx-auto h-full'>
                 <a name="Go back home link" href="/" className="self-center">
                     <h1 className='inline-flex items-center text-4xl tracking-wide font-bold gap-2'>

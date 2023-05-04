@@ -18,7 +18,7 @@ export default function BinHeader({ bid = null }) {
     }
 
     return (
-        <div className='flex-initial h-24 flex items-center border-b'>
+        <div className='flex-initial shrink-0 h-24 flex items-center border-b'>
             <div className='flex-1 flex flex-row justify-between max-w-screen px-2 md:max-w-7xl mx-auto'>
                 <h1 className='inline-flex items-center text-2xl font-medium gap-2'>
                     <a className="inline-flex items-center gap-1" href={`/${bid}`}>{bid}
