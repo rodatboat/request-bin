@@ -20,8 +20,8 @@ async function render(pageContext) {
 
   // See https://vite-plugin-ssr.com/head
   const { documentProps } = pageContext.exports
-  const title = (documentProps && documentProps.title) || 'Vite SSR app'
-  const desc = (documentProps && documentProps.description) || 'App using Vite + vite-plugin-ssr'
+  const title = (documentProps && documentProps.title) || 'REZ | Request Bin'
+  const desc = (documentProps && documentProps.description) || 'The way to inspect any HTTP request. Rez allows you to send requests to a custom endpoint, and analyze data.'
 
   const documentHtml = escapeInject`<!DOCTYPE html>
     <html lang="en">

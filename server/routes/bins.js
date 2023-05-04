@@ -11,10 +11,7 @@ router.route("/").get(async (req, res) => {
         let existingBin = await Bins.findOne({ bid: bid });
 
         if (!existingBin) {
-            // newBin = true;
-            // existingBin = await Bins.create({
-            //     bid: uuidv4()
-            // });
+            return res.send({ success: false, message: "Bin doesn't exist." });
         }
 
         const binRequests = await Requests.find({

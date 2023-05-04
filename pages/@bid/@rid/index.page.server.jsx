@@ -31,6 +31,17 @@ async function onBeforeRender(pageContext) {
             requestData = r;
           }
         });
+      } else {
+        throw RenderErrorPage({
+          pageContext: {
+            pageProps: {
+              errorInfo: `Error fetching bin. ID:'${bid}'.`,
+              requestData: [],
+              binData,
+            },
+            redirectTo: `/`,
+          },
+        });
       }
     });
 
