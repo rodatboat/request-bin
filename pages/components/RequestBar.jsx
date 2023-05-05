@@ -48,7 +48,7 @@ export default function RequestBar(pageProps) {
       </div>
 
       <div className='flex flex-col gap-1 overflow-auto scrollbar-hide'>
-        {binData.requests.reverse().map((b,i) => <RequestNavItem key={b.rid} {...b} />)}
+        {binData.requests.map((b,i) => <RequestNavItem key={b.rid} {...b} />).reverse()}
       </div>
     </div>
   )
