@@ -8,9 +8,7 @@ const RequestNavItem = (req) => {
         <div className='flex flex-row mx-2 gap-1 border rounded text-xs items-center h-8 overflow-hidden cursor-pointer'>
           <div className='self-start inline-flex h-full items-center pl-1'>
             <p className='flex min-w-max pr-1 w-24'>
-              {dayjs(req.createdAt).format(
-                "MM/DD/YY HH:mm:ss"
-              )}
+              {req.createdAt}
             </p>
             <p className='flex items-center justify-center border-x px-1 h-full w-14'>
               [{req.method}]

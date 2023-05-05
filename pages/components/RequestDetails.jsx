@@ -58,9 +58,7 @@ export default function RequestDetails(pageProps) {
           <p className="">HTTP REQUEST</p>
           <div className="inline-flex gap-2">
             <p>{requestData.rid}</p>
-            <p>{dayjs(requestData.createdAt).format(
-              "MM/DD/YYYY HH:mm:ss"
-            )}</p>
+            <p>{requestData.createdAt}</p>
           </div>
         </div>
 

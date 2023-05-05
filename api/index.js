@@ -2,9 +2,8 @@
 
 const express = require('express')
 const compression = require('compression')
-const { renderPage } = require('vite-plugin-ssr/server')
-
 const cors = require('cors');
+const { renderPage } = require('vite-plugin-ssr/server')
 
 const isProduction = process.env.NODE_ENV === 'production'
 const root = `${__dirname}/..`
@@ -14,9 +13,9 @@ startServer()
 async function startServer() {
   const app = express()
 
-  app.use(compression())
-  app.use(express.json());
   app.use(cors());
+  app.use(compression());
+  app.use(express.json());
   app.use(express.urlencoded({extended:false}));
 
   if (isProduction) {
