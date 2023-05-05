@@ -20,7 +20,7 @@ function Page(pageProps) {
       });
   }
 
-  console.log(recentBins)
+  // console.log(recentBins)
 
   return (
     <>

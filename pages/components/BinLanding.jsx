@@ -77,9 +77,7 @@ export default function BinLanding(pageProps) {
               LAST REQUEST
             </h2>
             <h1 className='font-medium text-sm'>
-              {dayjs(binData.bin.last_req).format(
-                "MM/DD/YYYY HH:mm:ss"
-              )}
+              {binData.bin.last_req}
             </h1>
           </div>
 
