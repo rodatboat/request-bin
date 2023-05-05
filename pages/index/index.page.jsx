@@ -20,8 +20,6 @@ function Page(pageProps) {
       });
   }
 
-  // console.log(recentBins)
-
   return (
     <>
       <NavBar {...pageProps}>
@@ -56,9 +54,7 @@ function Page(pageProps) {
                   </div>
 
                   <div className="inline-flex gap-1 items-center">
-                    {dayjs(b.last_req).format(
-                      "MM/DD/YYYY HH:mm:ss"
-                    )}
+                    {b.last_req}
                   </div>
 
 
