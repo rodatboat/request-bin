@@ -66,7 +66,7 @@ export default function BinLanding(pageProps) {
             </div>
             <div className="self-start md:self-center mt-2 md:my-0">
               <button onClick={sendExampleRequests} className='inline-flex items-center gap-1 font-medium text-sm border rounded px-3 py-1 text-secondary hover:text-white hover:border-white transition-all duration-150 ease-in-out'>
-                <img className="w-[12px]" src={sampleSvg} />
+                <img alt="Send sample request icon" className="w-[12px]" src={sampleSvg} />
                 Send Example Request
               </button>
             </div>

@@ -29,7 +29,7 @@ function Page(pageProps) {
           <h1 className="mt-24 text-7xl font-bold">The way to inspect any HTTP request.</h1>
           <p className="text-secondary text-xl">Rez allows you to send requests to a custom endpoint, and analyze data.</p>
           <button onClick={createBin} className="inline-flex w-max items-center mt-4 gap-1 font-medium border rounded px-4 py-2 border-white bg-white text-black hover:text-white hover:bg-black hover:border-white transition-all duration-150 ease-in-out">
-            <img className="w-[18px]" src={newSvg} />
+            <img alt="New bin icon" className="w-[18px]" src={newSvg} />
             Try it now
           </button>
         </div>
@@ -47,9 +47,9 @@ function Page(pageProps) {
                 <div key={b.bid} className="text-secondary flex flex-row justify-between w-full border-b px-2 py-1 rounded-t text-sm">
                   <div className="inline-flex gap-1 items-center">
                     <p>ID:</p>
-                    <a href={`/${b.bid}`} className="inline-flex items-center gap-1 hover:text-white w-max">
+                    <a name="View bin details" href={`/${b.bid}`} className="inline-flex items-center gap-1 hover:text-white w-max">
                       {b.bid}
-                      <img className="w-[14px]" src={linkSvg} />
+                      <img alt="Link icon" className="w-[14px]" src={linkSvg} />
                     </a>
                   </div>
 

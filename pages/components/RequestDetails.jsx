@@ -14,7 +14,7 @@ const TableObject = ({ k = null, val = null }) => {
         <p className="basis-1/3 px-2 h-full flex items-center">{k}</p>
         <p onClick={copyToClipboard} className="basis-full px-2 border-l h-full inline-flex items-center text-secondary overflow-hidden whitespace-nowrap text-ellipsis cursor-pointer">
           {String(val)}
-          <img className="ml-1 w-3 hover:stroke-white" src={linkSvg} />
+          <img alt="Link icon" className="ml-1 w-3 hover:stroke-white" src={linkSvg} />
         </p>
       </div>
     </>
@@ -79,7 +79,7 @@ export default function RequestDetails(pageProps) {
             </div>
             <div className="">
               <button onClick={deleteRequest} className='inline-flex items-center gap-1 font-medium text-sm border rounded px-3 py-1 text-secondary hover:text-white hover:border-white transition-all duration-150 ease-in-out'>
-                <img className="w-[14px]" src={deleteSvg} />
+                <img alt="Delete icon" className="w-[14px]" src={deleteSvg} />
                 Delete
               </button>
             </div>

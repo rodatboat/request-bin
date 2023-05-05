@@ -40,7 +40,7 @@ export default function BinHeader({ bid = null, binData }) {
                     {binData.bin.private ? "Private" : "Public"}
                 </span>
                 <h1 className=' flex flex-col md:flex-row self-start md:self-center text-lg md:text-2xl font-medium gap-2 mb-1 md:mb-0'>
-                    <a className=" items-center" href={`/${bid}`}>{bid}
+                    <a name="Bin home url" className=" items-center" href={`/${bid}`}>{bid}
                     </a>
 
                     <span className='hidden md:inline text-xs self-start md:self-center bg-gray text-secondary font-medium px-2 rounded-xl'>
@@ -49,11 +49,11 @@ export default function BinHeader({ bid = null, binData }) {
                 </h1>
                 <div className='flex flex-row gap-2 text-sm self-start md:self-center'>
                     <button onClick={copyToClipboard} className='inline-flex items-center gap-1 font-medium border rounded px-2 py-1 text-secondary hover:text-white hover:border-white transition-all duration-150 ease-in-out'>
-                        <img className="w-[14px]" src={linkSvg} />
+                        <img alt="Link icon" className="w-[14px]" src={linkSvg} />
                         Copy
                     </button>
                     <button onClick={createBin} className='inline-flex items-center gap-1 font-medium border rounded px-2 py-1 border-white bg-white text-black hover:text-white hover:bg-black hover:border-white transition-all duration-150 ease-in-out'>
-                        <img className="w-[14px]" src={newSvg} />
+                        <img alt="New bin icon" className="w-[14px]" src={newSvg} />
                         New
                     </button>
                 </div>

@@ -28,7 +28,7 @@ export default function NavBar(pageProps) {
                     </a>
 
                     <a name="Go to github repo" href="https://github.com/rodatboat/request-bin" className="flex items-center hover:-translate-y-1 transition-all mt-1 duration-300 ease-in-out rounded-full">
-                        <img className="w-[18px]" src={githubSvg} />
+                        <img alt="Github icon" className="w-[18px]" src={githubSvg} />
                     </a>
                 </div>
                 <div className='flex flex-row gap-2 text-sm'>
@@ -38,7 +38,7 @@ export default function NavBar(pageProps) {
                         <div className="hidden dropdown-content z-1 absolute pt-16 w-full">
                             <div className="flex flex-col gap-1 max-h-[250px] overflow-auto scrollbar-hide h-full w-full bg-black text-secondary border border-t-0 rounded-b px-1 py-1 text-sm">
                                 {recentBins.map((b, i) => (
-                                    <a key={b} href={`/${b}`} className="text-center hover:text-white transition-all duration-300 ease-in-out">
+                                    <a name="View recent bin" key={b} href={`/${b}`} className="text-center hover:text-white transition-all duration-300 ease-in-out">
                                         {b.split("-")[0]}
                                     </a>
                                 ))}
