@@ -1,10 +1,15 @@
-import React from 'react'
-import dayjs from "dayjs";
+import React from 'react';
+import copy from 'copy-to-clipboard';
 
 import sampleSvg from '/sample.svg'
+import linkSvg from '/link.svg'
 
 export default function BinLanding(pageProps) {
   const { bid = null, binData } = pageProps;
+
+  const copyToClipboard = () => {
+    let isCopy = copy(`curl -d '{ "bid": "${bid}" }' -H "Content-Type: application/json" ${import.meta.env.VITE_APP_URI}/${bid}`)
+}
 
   const sendExampleRequests = async () => {
     await fetch(import.meta.env.VITE_APP_URI + `/${bid}/example/get/request?` + new URLSearchParams({
@@ -85,6 +90,12 @@ export default function BinLanding(pageProps) {
             <h2 className='text-secondary text-sm'>
               Send requests to this endpoint to inspect webhooks, custom events and more.
             </h2>
+
+            <div className='px-2 py-1 bg-gray/50 rounded border border-gray mt-1'>
+            <p onClick={copyToClipboard} className='inline-flex items-center overflow-hidden whitespace-nowrap text-ellipsis w-full gap-1 font-regular text-sm text-secondary transition-all duration-150 ease-in-out cursor-pointer'>
+              {`curl -d '{ "bid": "${bid}" }' -H "Content-Type: application/json" ${import.meta.env.VITE_APP_URI}/${bid}`}<img alt="Copy cURL command" className="w-[12px]" src={linkSvg} />
+              </p>
+            </div>
           </div>
         </div>
       </div>

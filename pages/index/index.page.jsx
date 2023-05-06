@@ -53,7 +53,7 @@ function Page(pageProps) {
                     </a>
                   </div>
 
-                  <div className="inline-flex gap-1 items-center">
+                  <div className="inline-flex gap-1 items-center whitespace-nowrap overflow-hidden text-ellipsis">
                     {b.last_req}
                   </div>
 

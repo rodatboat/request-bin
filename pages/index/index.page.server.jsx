@@ -3,6 +3,7 @@ export { onBeforeRender };
 
 import { RenderErrorPage } from 'vite-plugin-ssr/RenderErrorPage';
 import fetch from 'node-fetch';
+import dayjs from 'dayjs';
 
 async function onBeforeRender(pageContext) {
   let recentBins = null;
@@ -18,6 +19,15 @@ async function onBeforeRender(pageContext) {
       } else {
         recentBins = []
       }
+    });
+
+    recentBins = recentBins.map((r) => {
+      return ({
+        ...r,
+        last_req: dayjs(r.last_req).format(
+          "MM/DD/YY HH:mm:ss"
+        )
+      })
     });
 
   

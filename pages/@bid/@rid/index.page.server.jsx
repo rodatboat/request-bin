@@ -2,6 +2,7 @@ export { onBeforeRender };
 
 import { RenderErrorPage } from "vite-plugin-ssr/RenderErrorPage";
 import fetch from "node-fetch";
+import dayjs from "dayjs";
 
 async function onBeforeRender(pageContext) {
   const { bid, rid } = pageContext.routeParams;
@@ -68,9 +69,9 @@ async function onBeforeRender(pageContext) {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Accept":"*/*",
-          "Accept-Encoding":"gzip, deflate, br",
-          "Connection":"keep-alive"
+          "Accept": "*/*",
+          "Accept-Encoding": "gzip, deflate, br",
+          "Connection": "keep-alive"
         },
         body: body,
       }
@@ -88,6 +89,25 @@ async function onBeforeRender(pageContext) {
           },
         });
       });
+  }
+
+  binData.requests = binData.requests.map((r) => {
+    return ({
+      ...r,
+      createdAt: dayjs(r.createdAt).format(
+        "MM/DD/YY HH:mm:ss"
+      )
+    })
+  });
+
+  binData.bin = {
+    ...binData.bin,
+    last_req:dayjs(binData.bin.last_req).format("MM/DD/YY HH:mm:ss")
+  }
+
+  requestData = {
+    ...requestData,
+    createdAt:dayjs(requestData.createdAt).format("MM/DD/YY HH:mm:ss")
   }
 
   // need to fix error when fetch from browser, it doesnt store headers etc.
