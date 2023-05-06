@@ -25,7 +25,7 @@ const RequestNavItem = (req) => {
 }
 
 export default function RequestBar(pageProps) {
-  const [showReqBar, setShowReqBar] = useState(true);
+  const [showReqBar, setShowReqBar] = useState(false);
 
   const toggleReqBar = () => setShowReqBar(!showReqBar);
 
