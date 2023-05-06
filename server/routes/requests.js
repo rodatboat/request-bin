@@ -59,7 +59,6 @@ router.route("/new").post(async (req, res) => {
       success: true,
     });
   } catch (error) {
-    // console.log(error.message)
     return res.send({ success: false, message: "Error creating request." });
   }
 });

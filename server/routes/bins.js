@@ -29,7 +29,6 @@ router.route("/").get(async (req, res) => {
         });
 
     } catch (error) {
-        // console.log(error.message)
         return res.send({ success: false, message: "Error fetching bin." });
     }
 });
@@ -56,7 +55,6 @@ router.route("/recent").get(async (req, res) => {
         });
 
     } catch (error) {
-        // console.log(error.message)
         return res.send({ success: false, message: "Error fetching recent bins." });
     }
 });
@@ -82,7 +80,6 @@ router.route("/new").get(async (req, res) => {
         });
 
     } catch (error) {
-        // console.log(error.message)
         return res.send({ success: false, message: "Error creating bin." });
     }
 });
